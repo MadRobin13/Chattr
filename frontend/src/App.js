@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {connect, sendMessage} from "./api/index";
 
 function App() {
   return (

@@ -1,2 +1,6 @@
-# Go-and-React-Website
-A website made using Go and React.js
+# Chattr
+
+![Chattr Logo](chattr_logo_v1.png)
+
+*A chat app made using Go and React.js*
+

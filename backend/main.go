@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 
 	"github.com/gorilla/websocket"
@@ -45,7 +46,14 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 
 func setUpRoutes() {
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Simple Server")
+		// fmt.Fprintf(w, "Simple Server")
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			fmt.Errorf("Error reading body: %v", err)
+		}
+		defer r.Body.Close()
+
+		fmt.Fprintf(w, "message: %v\n", string(body))
 	})
 	
 	http.HandleFunc("/ws", serveWs)

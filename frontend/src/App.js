@@ -32,6 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <link rel="icon" href="Chattr_icon_v1.png"/> 
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
         <button onClick={this.send}>Hit</button>

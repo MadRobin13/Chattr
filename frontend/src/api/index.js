@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 var socket = new WebSocket("ws://localhost:8080/ws");
 
-let connect = cb => {
+let connect = (cb) => {
     console.log("Attempting to connect");
 
     socket.onopen = () => {

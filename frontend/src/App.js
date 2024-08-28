@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import "./App.css";
 import { connect, sendMessage } from "./api/index";
 import Header from "./components/Header/Header";
-import ChatHistory from "./components/Header/ChatHistory/ChatHistory";
+import ChatHistory from "./components/ChatHistory/ChatHistory";
+import ChatInput from "./components/ChatInput/ChatInput";
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class App extends Component {
   }
 
   send() {
+    if (KeyboardEvent.keyCode  === 13) {
+      sendMessage(currentTarget.value);
+    }
     console.log("hello");
     sendMessage("hello");
   }
@@ -35,7 +39,7 @@ class App extends Component {
         <link rel="icon" href="Chattr_icon_v1.png"/> 
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
-        <button onClick={this.send}>Hit</button>
+        <ChatInput send={this.send} />
       </div>
     );
   }

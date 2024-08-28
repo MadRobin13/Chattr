@@ -3,7 +3,6 @@ package websocket
 import (
 	"fmt"
 	"log"
-	"sync"
 
 	"github.com/gorilla/websocket"
 )
@@ -38,3 +37,35 @@ func (c *Client) Read() {
 	}
 }
 
+func (pool *Pool) Start() {
+	for {
+		select {
+		case client := <- pool.Register:
+			pool.Clients[client] = true
+			fmt.Println("size of connecton pool: ", len(pool.Clients))
+			for client, _ := range pool.Clients {
+				fmt.Println(client)
+				client.Conn.WriteJSON(Message{Type: 1, Body: "New user joined..."})
+			} 
+
+		case client := <- pool.Unregister:
+			delete(pool.Clients, client)
+			fmt.Println("size of connection pool: ", len(pool.Clients))
+			for client, _ := range pool.Clients {
+				if err := client.Conn.WriteJSON(Message{Type: 1, Body: "User disconnected..."}); err != nil {
+					fmt.Println(err)
+					return
+				}
+			}
+
+		case message := <- pool.Broadcast:
+			fmt.Println("Sending message to all pool clients")
+			for client, _ := range pool.Clients{
+				if err := client.Conn.WriteJSON(message); err != nil {
+					fmt.Println(err)
+					return
+				}
+			}
+		}
+	}
+}

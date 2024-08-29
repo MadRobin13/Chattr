@@ -3,6 +3,13 @@ package websocket
 import (
 	"fmt"
 	"log"
+	"os"
+
+	"github.com/joho/godotenv"
+	"context"
+	"time"
+	"go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/gorilla/websocket"
 )
@@ -38,6 +45,10 @@ func (c *Client) Read() {
 }
 
 func (pool *Pool) Start() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	for {
 		select {
 		case client := <- pool.Register:
@@ -66,6 +77,14 @@ func (pool *Pool) Start() {
 					return
 				}
 			}
+			ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+			defer cancel()
+			client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("URI")))
+			if err != nil {
+				log.Fatal("couldn't apply uri: %v", err)
+			}
+			
+			client.Database("Chattr").Collection("Messages").InsertOne(ctx, message)
 		}
 	}
 }

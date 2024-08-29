@@ -27,3 +27,4 @@
 - Finally run `npm run start`
 
 ## License:
+This project is licensed under the BSD 3-Clause "New" or "Revised" License and can be found [here](LICENSE)

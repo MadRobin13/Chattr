@@ -25,18 +25,16 @@ class App extends Component {
     }); 
   }
 
-  send() {
-    if (KeyboardEvent.keyCode  === 13) {
-      sendMessage(currentTarget.value);
+  send(event) {
+    if(event.keyCode === 13) {
+      sendMessage(event.target.value);
+      event.target.value = "";
     }
-    console.log("hello");
-    sendMessage("hello");
   }
 
   render() {
     return (
       <div className="App">
-        <link rel="icon" href="Chattr_icon_v1.png"/> 
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
         <ChatInput send={this.send} />

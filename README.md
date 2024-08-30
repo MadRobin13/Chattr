@@ -4,7 +4,6 @@
 
 *A chat app made using Go and React.js*
 
-*Built using this [tutorial](https://tutorialedge.net/projects/chat-system-in-go-and-react/) with some modifications due to how outdated it is.
 
 ## How to Use it:
 - Go to the [deployment](https://go-and-react-website.vercel.app/)
@@ -28,3 +27,7 @@
 
 ## License:
 This project is licensed under the BSD 3-Clause "New" or "Revised" License and can be found [here](LICENSE)
+
+___
+
+*Built using this [tutorial](https://tutorialedge.net/projects/chat-system-in-go-and-react/) with some modifications due to how outdated it is.

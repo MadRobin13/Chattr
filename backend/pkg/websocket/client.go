@@ -25,7 +25,7 @@ type Message struct {
 	Body string `json:"body"`
 }
 
-func (c *Client) Read() {
+func (c *Client) Read() { 
 	defer func() {
 		c.Pool.Unregister <- c
 		c.Conn.Close()

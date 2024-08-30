@@ -1,6 +1,6 @@
 # Chattr
 
-![Chattr Logo](chattr_logo_v5.png)
+![Chattr Logo](./frontend/src/components/Header/chattr_logo_v5.png)
 
 *A chat app made using Go and React.js*
 

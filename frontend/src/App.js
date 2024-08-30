@@ -27,6 +27,7 @@ class App extends Component {
 
   send(event) {
     if(event.keyCode === 13) {
+      if (event.target.value.trim() === "") return;
       sendMessage(event.target.value);
       event.target.value = "";
     }

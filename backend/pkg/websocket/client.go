@@ -87,7 +87,7 @@ func (pool *Pool) Start() {
 			client.Database("Chattr").Collection("Messages").InsertOne(ctx, message)
 			err2 := client.Disconnect(ctx)
 			if err2 != nil {
-				log.Fatal("Couldn't disconnect mongo client| Error: %v", err2)
+				log.Fatal("Couldn't disconnect mongo client| Error: %v", err2) 
 			}
 		}
 	}

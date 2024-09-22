@@ -30,4 +30,4 @@ This project is licensed under the BSD 3-Clause "New" or "Revised" License and c
 
 ___
 
-*Built using this [tutorial](https://tutorialedge.net/projects/chat-system-in-go-and-react/) with some modifications due to how outdated it is.
+*Adapted from this very old [tutorial](https://tutorialedge.net/projects/chat-system-in-go-and-react/).
